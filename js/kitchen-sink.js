@@ -18,6 +18,7 @@ function imReady() {
     }, false);
 }
 var $$ = Dom7;
+var myApp = null;
 function init(){
 	myApp = new Framework7({
 	    modalTitle: 'Framework7',
