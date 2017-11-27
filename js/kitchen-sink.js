@@ -17,18 +17,20 @@ var globRedSelect = {
 };
 
 // database Management 
-var db = openDatabase('RedditDB', '1.0', 'Reddit DB', 2 * 1024 * 1024);
+var db = openDatabase('RedditDB', '1.0', 'Reddit DB', 2 * 1024 * 1024,function(){
+	alert("loaded db");
+});
 var selectedReddits = [];
 (function(){
 	db.transaction(function (tx) {  
    		tx.executeSql('CREATE TABLE IF NOT EXISTS Reddits (name)');
    		tx.executeSql('CREATE TABLE IF NOT EXISTS Favourites (id unique,title,thumbnail,dt,img,desc)');
    		tx.executeSql('SELECT * FROM Reddits', [], function (tx, results) {
-   			leftPanelGenerate(data);
    			var len = results.rows.length, i;
    			for (i = 0; i < len; i++){
          		selectedReddits.push(results.rows.item(i).name);
       		}
+      		leftPanelGenerate();
    		}, null);
 	});
 })();
