@@ -1,12 +1,46 @@
-var myApp = new Framework7({
-    modalTitle: 'Framework7',
-    material: true,
-});
-
+document.addEventListener('deviceready', imReady, false);
+function imReady() {
+	init();
+    document.addEventListener("backbutton", function(e){
+        var page=myApp.getCurrentView().activePage; 
+        myApp.hidePreloader();
+        if(page.name=="index"){ 
+            e.preventDefault(); 
+            if(confirm("Do you want to Exit!")) { 
+                navigator.app.clearHistory(); 
+                navigator.app.exitApp(); 
+            } 
+        } else { 
+        	try { 
+            	Dom7(".back").click();
+            } catch(msg){}
+        }
+    }, false);
+}
 var $$ = Dom7;
+function init(){
+	myApp = new Framework7({
+	    modalTitle: 'Framework7',
+	    material: true,
+	});
+	var mainView = myApp.addView('.view-main', {
+	});
+	// var rightView = myApp.addView('.view-right', {
+	//     name: 'right'
+	// });	
+}
 
-var mainView = myApp.addView('.view-main', {
-});
+
+
+// var myApp = new Framework7({
+//     modalTitle: 'Framework7',
+//     material: true,
+// });
+
+// var $$ = Dom7;
+
+// var mainView = myApp.addView('.view-main', {
+// });
 // var rightView = myApp.addView('.view-right', {
 //     name: 'right'
 // });
@@ -105,7 +139,6 @@ myApp.onPageInit('addnew', function (page) {
 	}
 });
 function submitReddit() {
-	alert("");
 	var chkboxes = document.getElementsByName("redditnames");
 	db.transaction(function (tx) {
 		var flag = true;
@@ -179,7 +212,7 @@ function fetchSubRedditNames(name,id) {
 	    //   '</option>';
 	    links +='<li>'+
 				'	<label class="label-checkbox item-content">'+
-				'		<input type="checkbox" name="redditnames" value="'+json[k].name+'" checked="checked">'+
+				'		<input type="checkbox" name="redditnames" value="'+json[k].name+'" />'+
 				'		<div class="item-media"><i class="icon icon-form-checkbox"></i></div>'+
 				'		<div class="item-inner">'+
 				'			<div class="item-title">'+json[k].name+'</div>'+
