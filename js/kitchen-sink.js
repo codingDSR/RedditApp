@@ -1,3 +1,13 @@
+var myApp = new Framework7({
+    modalTitle: 'Framework7',
+    material: true,
+});
+
+var $$ = Dom7;
+
+var mainView = myApp.addView('.view-main', {
+});
+
 document.addEventListener('deviceready', imReady, false);
 function imReady() {
 	init();
@@ -17,31 +27,11 @@ function imReady() {
         }
     }, false);
 }
-var $$ = Dom7;
-var myApp = null;
-function init(){
-	myApp = new Framework7({
-	    modalTitle: 'Framework7',
-	    material: true,
-	});
-	var mainView = myApp.addView('.view-main', {
-	});
-	// var rightView = myApp.addView('.view-right', {
-	//     name: 'right'
-	// });	
-}
 
 
 
-// var myApp = new Framework7({
-//     modalTitle: 'Framework7',
-//     material: true,
-// });
 
-// var $$ = Dom7;
 
-// var mainView = myApp.addView('.view-main', {
-// });
 // var rightView = myApp.addView('.view-right', {
 //     name: 'right'
 // });
